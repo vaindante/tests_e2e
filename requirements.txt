@@ -1,0 +1,7 @@
+compare-for-testing
+faker
+furl
+kwargs
+pytest
+requests
+xmltodict

@@ -2,6 +2,8 @@ from pprint import pprint
 
 import pytest
 
+from utils import compare
+
 
 @pytest.mark.api
 class TestTheme7:
@@ -35,11 +37,20 @@ class TestTheme7:
         users_csv = api.get_users_csv()
         pprint(users_xml)
         pprint(users_json)
-        print(users_csv)
+        pprint(users_csv)
+        print()
 
     @pytest.mark.demo
-    def test_diff_errors(self):
-        pass
+    def test_diff_errors(self, api, faker):
+        user = api.get_users_json()[-1]
+        pprint(user)
+        standard_data = {
+            'name': faker.name(),
+            'email': faker.email(),
+            'is_active': True,
+
+        }
+        compare(standard_data, user)
 
     def test_first_xml(self, api):
         users = api.get_users_xml()
