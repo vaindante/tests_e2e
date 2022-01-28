@@ -1,18 +1,14 @@
-import pytest
+from pprint import pprint
 
-from api import Api
+import pytest
 
 
 @pytest.mark.api
-class TestTheme6:
-    @pytest.fixture()
-    def api(self):
-        api = Api()
-        yield api
-        api.close()
+class TestTheme7:
 
     def test_first_json(self, api):
         users = api.get_users_json()
+        pprint(users)
         assert len(users) == 10
         """
         10 Юзеров
@@ -29,7 +25,26 @@ class TestTheme6:
         2. Реализовать Проверку что у всех пользоватлей есть имя и количество книг
         """
 
+    @pytest.mark.demo
+    def test_diff(self, api):
+        """
+        Для демонстрации ответов
+        """
+        users_json = api.get_users_json()
+        users_xml = api.get_users_xml()
+        users_csv = api.get_users_csv()
+        pprint(users_xml)
+        pprint(users_json)
+        print(users_csv)
+
+    @pytest.mark.demo
+    def test_diff_errors(self):
+        pass
+
     def test_first_xml(self, api):
+        users = api.get_users_xml()
+        pprint(users)
+        assert len(users) == 10
         ...
 
         """
@@ -41,7 +56,7 @@ class TestTheme6:
         ...
         """
         1. Получить список книг пользоватлей
-        2. Проверить что количество полученныъх книг совпадает с информацией полученной у пользовательская
+        2. Проверить что количество полученных книг совпадает с информацией полученной у пользовательская
         3. При нахожениее ошибок, они должны быть понятны и читаемы   
         """
 
@@ -58,7 +73,7 @@ class TestTheme6:
         """
         1. Создать пользователя
         2. Проверить отдельный запросом, что пользователь создался
-        3. удалить пользовательская
+        3. Удалить пользовательская
         4. Проверить что пользователь удален.
         
         """
