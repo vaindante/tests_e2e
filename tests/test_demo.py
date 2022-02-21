@@ -35,8 +35,8 @@ class TestTheme7:
         users_json = api.get_users_json()
         users_xml = api.get_users_xml()
         users_csv = api.get_users_csv()
-        pprint(users_xml)
         pprint(users_json)
+        pprint(users_xml)
         pprint(users_csv)
         print()
 

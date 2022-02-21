@@ -16,13 +16,13 @@ class Api(BaseAPI):
         return response.json()
 
     def get_users_xml(self):
-        response = self.get(f'users', type_='xml')
+        response = self.get('users', type_='xml')
         assert response.status_code == 200
         print(response.text)
         return xmltodict.parse(response.text, xml_attribs=False)
 
     def get_users_csv(self):
-        response = self.get(f'users', headers={'Accept': 'text/csv'})
+        response = self.get('users', headers={'Accept': 'text/csv'})
         assert response.status_code == 200
         print(response.text)
         result = list(csv.DictReader(response.text.splitlines(), dialect='excel'))
