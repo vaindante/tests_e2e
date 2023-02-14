@@ -2,7 +2,7 @@ import pytest
 from faker import Faker
 
 from api import Api
-from config import config
+from config_test import config
 
 
 @pytest.fixture

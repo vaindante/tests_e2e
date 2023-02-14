@@ -10,6 +10,18 @@ from api.base_api import BaseAPI
 class Api(BaseAPI):
     base_url: str = 'http://localhost:5000'
 
+    def get(self, endpoint, *params, type_=None, **kwargs):
+        if type_:
+            kwargs['headers'] = self.prepare_kwargs(type_, kwargs.get('headers'))
+        return self.session.get(
+            # Concatenate endpoint with url
+            (self.furl / endpoint).url,
+            # Add query parameters
+            params=params,
+            # Add Any requests params_
+            **kwargs
+        )
+
     def get_users_json(self):
         response = self.get('users', type_='json')
         assert response.status_code == 200

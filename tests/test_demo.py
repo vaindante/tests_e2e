@@ -6,7 +6,7 @@ from utils import compare
 
 
 @pytest.mark.api
-class TestTheme7:
+class TestDemo:
 
     def test_first_json(self, api):
         users = api.get_users_json()
@@ -63,7 +63,33 @@ class TestTheme7:
         2. Реализовать Проверку что у всех пользоватлей есть имя и количество книг
         """
 
-    def test_book_json(self, api):
+    @pytest.mark.parametrize(
+        'a,b,c',
+        [
+            pytest.param(
+                1, 2, 3,
+                marks=[
+                    pytest.mark.xfail,
+                    pytest.mark.slow
+                ]
+            ), pytest.param(
+            4, 5, 6,
+            marks=[
+                pytest.mark.one,
+                pytest.mark.slow
+            ]
+        ), pytest.param(
+            1, 2, 3,
+            marks=[
+                pytest.mark.two,
+                pytest.mark.fast,
+                pytest.mark.not_empty
+            ]
+        ),
+        ]
+    )
+    def test_book_json(self, api, a, b, c):
+        print(a, b, c)
         ...
         """
         1. Получить список книг пользоватлей
