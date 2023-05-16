@@ -24,6 +24,7 @@ class Api(BaseAPI):
 
     def get_users_json(self):
         response = self.get('users', type_='json')
+        print(response)
         assert response.status_code == 200
         return response.json()
 

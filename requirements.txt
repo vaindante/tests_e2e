@@ -5,3 +5,6 @@ kwargs
 pytest
 requests
 xmltodict
+selenium
+allure-pytest
+webdriver-manager

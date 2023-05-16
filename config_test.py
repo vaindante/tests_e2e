@@ -2,7 +2,7 @@ import os
 
 
 class Config:
-    local_url = 'http://localhost:5000'
+    local_url = 'http://localhost:5001'
     server_url = 'https://server-for-traning.herokuapp.com/'
     user = os.getenv('TEST_USER')
     password = os.getenv('TEST_PASSWORD')
