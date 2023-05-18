@@ -1,19 +1,12 @@
-from time import sleep
-
 import pytest
-from selenium.webdriver import Chrome
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+
+from ui.Application import Application
 
 
-@pytest.fixture()
-def wd():
-    wd = Chrome(service=Service(ChromeDriverManager().install()))
-    wd.get('https://food.ru')
+@pytest.fixture(scope='session')
+def app():
+    _app = Application('https://food.ru/')
 
-    sleep(.5)
+    yield _app
 
-    yield wd
-
-    wd.close()
-
+    _app.close()
