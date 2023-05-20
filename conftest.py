@@ -1,5 +1,6 @@
 import pytest
 
+from api.api import ClientApi
 from ui.Application import Application
 
 
@@ -10,3 +11,11 @@ def app():
     yield _app
 
     _app.close()
+
+
+@pytest.fixture(scope='session')
+def api():
+    _api = ClientApi()
+    yield _api
+
+    _api.session.close()
